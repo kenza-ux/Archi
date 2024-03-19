@@ -1,17 +1,50 @@
-# This is a sample Python script.
+import datetime
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+class MirrorApp:
+    def __init__(self):
+        self.langue = 'français'  # Langue par défaut
+
+    def dire_bonjour(self):
+        heure = datetime.datetime.now().hour
+        if 5 <= heure < 12:
+            print(f'Bonjour! ({self.langue})')
+        elif 12 <= heure < 18:
+            print(f'Bonne après-midi! ({self.langue})')
+        elif 18 <= heure < 22:
+            print(f'Bonsoir! ({self.langue})')
+        else:
+            print(f'Bonne nuit! ({self.langue})')
+
+    def dire_au_revoir(self):
+        heure = datetime.datetime.now().hour
+        if 5 <= heure < 12:
+            print(f'Au revoir! ({self.langue})')
+        elif 12 <= heure < 18:
+            print(f'Au revoir! ({self.langue})')
+        elif 18 <= heure < 22:
+            print(f'Au revoir! ({self.langue})')
+        else:
+            print(f'Bonne nuit! ({self.langue})')
+
+    def verifier_palindrome(self, texte):
+        texte = texte.lower().replace(" ", "")
+        if texte == texte[::-1]:
+            print("Bien dit !")
+            return True
+        return False
+
+    def lancer(self):
+        self.dire_bonjour()
+        while True:
+            entree = input("Entrez du texte (ou 'quitter' pour arrêter): ")
+            if entree.lower() == 'quitter':
+                break
+            if self.verifier_palindrome(entree):
+                continue
+            print(entree[::-1])
+        self.dire_au_revoir()
 
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('kenza')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    app = MirrorApp()
+    app.lancer()
