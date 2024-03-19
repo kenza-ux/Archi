@@ -1,0 +1,10 @@
+# Distribution / packaging
+.Python
+
+build/
+
+downloads/
+
+lib/
+
+.installed.cfg
