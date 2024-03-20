@@ -4,7 +4,7 @@
 build/
 
 downloads/
-
+.idea/
 lib/
 
 .installed.cfg
