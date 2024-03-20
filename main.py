@@ -64,17 +64,18 @@ class MirrorApp:
     def run(self):
         self.print_message(self.get_greeting())
 
+        input_prompt = "Entrez du texte (ou 'exit' pour quitter): " if self.lang == "fr" else "Type here (or 'exit' to quit): "
         while True:
-            user_input = input("Entrez du texte (ou 'exit' pour quitter): ").lower()
+            user_input = input(input_prompt).lower()
 
             if user_input == 'exit':
                 break
 
             if self.is_palindrome(user_input):
-                self.print_message("Bien dit !")
+                self.print_message("Bien dit !" if self.lang == "fr" else "Well said!")
             else:
                 mirrored_text = self.mirror_text(user_input)
-                self.print_message(f"En miroir : {mirrored_text}")
+                self.print_message(f"En miroir : {mirrored_text}" if self.lang == "fr" else f"Mirrored: {mirrored_text}")
 
         self.print_message(self.get_farewell())
 
