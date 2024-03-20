@@ -4,44 +4,48 @@ class MirrorApp:
     def __init__(self):
         self.langue = 'français'  # Langue par défaut
 
-    def dire_bonjour(self):
+    def _afficher_message(self, message):
+        print(f'{message} ({self.langue})')
+
+    def _salutation_selon_heure(self, matin, apres_midi, soir, nuit):
         heure = datetime.datetime.now().hour
         if 5 <= heure < 12:
-            print(f'Bonjour! ({self.langue})')
+            self._afficher_message(matin)
         elif 12 <= heure < 18:
-            print(f'Bonne après-midi! ({self.langue})')
+            self._afficher_message(apres_midi)
         elif 18 <= heure < 22:
-            print(f'Bonsoir! ({self.langue})')
+            self._afficher_message(soir)
         else:
-            print(f'Bonne nuit! ({self.langue})')
+            self._afficher_message(nuit)
+
+    def dire_bonjour(self):
+        self._salutation_selon_heure("Bonjour!", "Bonne après-midi!", "Bonsoir!", "Bonne nuit!")
 
     def dire_au_revoir(self):
-        heure = datetime.datetime.now().hour
-        if 5 <= heure < 12:
-            print(f'Au revoir! ({self.langue})')
-        elif 12 <= heure < 18:
-            print(f'Au revoir! ({self.langue})')
-        elif 18 <= heure < 22:
-            print(f'Au revoir! ({self.langue})')
-        else:
-            print(f'Bonne nuit! ({self.langue})')
+        self._salutation_selon_heure("Au revoir!", "Au revoir!", "Au revoir!", "Bonne nuit!")
 
     def verifier_palindrome(self, texte):
         texte = texte.lower().replace(" ", "")
         if texte == texte[::-1]:
-            print("Bien dit !")
+            self._afficher_message("Bien dit !")
             return True
         return False
+
+    def lire_entree(self):
+        entree = input("Entrez du texte (ou 'quitter' pour arrêter): ")
+        return entree.lower()
+
+    def afficher_inverse(self, texte):
+        self._afficher_message(texte[::-1])
 
     def lancer(self):
         self.dire_bonjour()
         while True:
-            entree = input("Entrez du texte (ou 'quitter' pour arrêter): ")
-            if entree.lower() == 'quitter':
+            entree = self.lire_entree()
+            if entree == 'quitter':
                 break
-            if self.verifier_palindrome(entree):
-                continue
-            print(entree[::-1])
+            if not self.verifier_palindrome(entree):
+                self.afficher_inverse(entree)
         self.dire_au_revoir()
 
 
