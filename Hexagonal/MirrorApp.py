@@ -1,4 +1,4 @@
-# Code de bas niveau (interaction directe avec la machine ou le système d'exploitation)
+# Code de bas niveau (interaction avec le système d'exploitation et la console)
 import datetime
 import dictionnaire
 
@@ -16,7 +16,24 @@ class MirrorAppBase:
         else:
             return "night"
 
-# Code de haut niveau (abstraction de l'interaction, facilitant l'utilisation pour les développeurs)
+    def run_console_interaction(self):
+        print(self.get_greeting())
+        input_prompt = dictionnaire.inputs_run[self.lang]["entrer"]
+
+        while True:
+            user_input = input(input_prompt).lower()
+            if user_input == 'exit':
+                break
+
+            if self.is_palindrome(user_input):
+                print(dictionnaire.inputs_run[self.lang]["reponse"])
+            else:
+                mirrored_text = self.mirror_text(user_input)
+                print(dictionnaire.inputs_run[self.lang]["m"], mirrored_text)
+
+        print(self.get_farewell())
+
+# Code de haut niveau (logique métier)
 class MirrorApp(MirrorAppBase):
     def __init__(self, lang="fr"):
         super().__init__()
@@ -37,27 +54,11 @@ class MirrorApp(MirrorAppBase):
         period = self._get_time_of_day()
         return dictionnaire.farewells[self.lang][period]
 
-    def run(self):
-        print(self.get_greeting())
-        input_prompt = dictionnaire.inputs_run[self.lang]["entrer"]
-
-        while True:
-            user_input = input(input_prompt).lower()
-            if user_input == 'exit':
-                break
-
-            if self.is_palindrome(user_input):
-                print(dictionnaire.inputs_run[self.lang]["reponse"])
-            else:
-                mirrored_text = self.mirror_text(user_input)
-                print(dictionnaire.inputs_run[self.lang]["m"], mirrored_text)
-
-        print(self.get_farewell())
-
 if __name__ == "__main__":
     lang_choice = input("Choose a language (fr for French, en for English): ").lower()
     if lang_choice not in ["fr", "en"]:
         print("Invalid language choice. Defaulting to French.")
         lang_choice = "fr"
+
     app = MirrorApp(lang_choice)
-    app.run()
+    app.run_console_interaction()
