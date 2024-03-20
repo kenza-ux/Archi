@@ -2,7 +2,7 @@
 import datetime
 import dictionnaire
 
-class MirrorAppBase:
+class MirrorAppBase: #la repartition est hasardeuse et incorrect, l'une qui appelle l'autre c'est pas bon
     def __init__(self):
         self.current_hour = datetime.datetime.now().hour
 

@@ -1,4 +1,4 @@
-greetings = {
+greetings = { # crer une classe propore dictionnaire et mettre des getters dedans
             "en": {
                 "morning": "Good morning",
                 "afternoon": "Good afternoon",
