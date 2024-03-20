@@ -1,54 +1,87 @@
 import datetime
 
 class MirrorApp:
-    def __init__(self):
-        self.langue = 'français'  # Langue par défaut
+    def __init__(self, lang="fr"):
+        self.lang = lang.lower()
+        self.current_hour = datetime.datetime.now().hour
 
-    def _afficher_message(self, message):
-        print(f'{message} ({self.langue})')
+    def get_greeting(self):
+        greetings = {
+            "en": {
+                "morning": "Good morning",
+                "afternoon": "Good afternoon",
+                "evening": "Good evening",
+                "night": "Good night",
+            },
+            "fr": {
+                "morning": "Bonjour",
+                "afternoon": "Bon après-midi",
+                "evening": "Bonsoir",
+                "night": "Bonne nuit",
+            }
+        }
+        period = self._get_time_of_day()
+        return greetings[self.lang][period]
 
-    def _salutation_selon_heure(self, matin, apres_midi, soir, nuit):
-        heure = datetime.datetime.now().hour
-        if 5 <= heure < 12:
-            self._afficher_message(matin)
-        elif 12 <= heure < 18:
-            self._afficher_message(apres_midi)
-        elif 18 <= heure < 22:
-            self._afficher_message(soir)
+    def _get_time_of_day(self):
+        if 5 <= self.current_hour < 12:
+            return "morning"
+        elif 12 <= self.current_hour < 18:
+            return "afternoon"
+        elif 18 <= self.current_hour < 22:
+            return "evening"
         else:
-            self._afficher_message(nuit)
+            return "night"
 
-    def dire_bonjour(self):
-        self._salutation_selon_heure("Bonjour!", "Bonne après-midi!", "Bonsoir!", "Bonne nuit!")
+    def mirror_text(self, text):
+        return text[::-1]
 
-    def dire_au_revoir(self):
-        self._salutation_selon_heure("Au revoir!", "Au revoir!", "Au revoir!", "Bonne nuit!")
+    def is_palindrome(self, text):
+        cleaned_text = text.lower().replace(" ", "")
+        return cleaned_text == cleaned_text[::-1]
 
-    def verifier_palindrome(self, texte):
-        texte = texte.lower().replace(" ", "")
-        if texte == texte[::-1]:
-            self._afficher_message("Bien dit !")
-            return True
-        return False
+    def get_farewell(self):
+        farewells = {
+            "en": {
+                "morning": "Goodbye, see you soon",
+                "afternoon": "Goodbye, see you later",
+                "evening": "Goodbye, see you tonight",
+                "night": "Goodbye, see you tomorrow",
+            },
+            "fr": {
+                "morning": "Au revoir, à bientôt",
+                "afternoon": "Au revoir, à tout à l'heure",
+                "evening": "Au revoir, à ce soir",
+                "night": "Bonne nuit, à demain",
+            }
+        }
+        period = self._get_time_of_day()
+        return farewells[self.lang][period]
 
-    def lire_entree(self):
-        entree = input("Entrez du texte (ou 'quitter' pour arrêter): ")
-        return entree.lower()
+    def print_message(self, message):
+        print(message)
 
-    def afficher_inverse(self, texte):
-        self._afficher_message(texte[::-1])
+    def run(self):
+        self.print_message(self.get_greeting())
 
-    def lancer(self):
-        self.dire_bonjour()
         while True:
-            entree = self.lire_entree()
-            if entree == 'quitter':
-                break
-            if not self.verifier_palindrome(entree):
-                self.afficher_inverse(entree)
-        self.dire_au_revoir()
+            user_input = input("Entrez du texte (ou 'exit' pour quitter): ").lower()
 
+            if user_input == 'exit':
+                break
+
+            if self.is_palindrome(user_input):
+                self.print_message("Bien dit !")
+            else:
+                mirrored_text = self.mirror_text(user_input)
+                self.print_message(f"En miroir : {mirrored_text}")
+
+        self.print_message(self.get_farewell())
 
 if __name__ == "__main__":
-    app = MirrorApp()
-    app.lancer()
+    lang_choice = input("Choose a language (fr for French, en for English): ").lower()
+    if lang_choice not in ["fr", "en"]:
+        print("Invalid language choice. Defaulting to French.")
+        lang_choice = "fr"
+    app = MirrorApp(lang_choice)
+    app.run()
