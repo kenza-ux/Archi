@@ -1,13 +1,15 @@
 import datetime
-import dictionnaire
+from Dictio import Dictionnaire
+
 class MirrorApp:
     def __init__(self, lang="fr"):
         self.lang = lang.lower()
         self.current_hour = datetime.datetime.now().hour
+        self.dictionary = Dictionnaire()
 
     def get_greeting(self):
         period = self._get_time_of_day()
-        return dictionnaire.greetings[self.lang][period] # dégager ça pour avoir plutot un getperiod dans la classe dictionnaire
+        return self.dictionary.get_greeting(self.lang, period)
 
     def _get_time_of_day(self):
         if 5 <= self.current_hour < 12:
@@ -28,11 +30,11 @@ class MirrorApp:
 
     def get_farewell(self):
         period = self._get_time_of_day()
-        return dictionnaire.farewells[self.lang][period] #remplacer ça par un appel haut niveau avec un get vers dictionnaire
+        return self.dictionary.get_farewell(self.lang, period)
 
     def run(self):
         print(self.get_greeting())
-        input_prompt = dictionnaire.inputs_run[self.lang]["entrer"] #same
+        input_prompt = self.dictionary.get_input_message(self.lang, "entrer")
 
         while True:
             user_input = input(input_prompt).lower()
@@ -40,11 +42,10 @@ class MirrorApp:
                 break
 
             if self.is_palindrome(user_input):
-                print(dictionnaire.inputs_run[self.lang]["reponse"]) #same
-
+                print(self.dictionary.get_input_message(self.lang, "reponse"))
             else:
                 mirrored_text = self.mirror_text(user_input)
-                print( dictionnaire.inputs_run[self.lang]["m"], mirrored_text) #same
+                print(self.dictionary.get_input_message(self.lang, "m"), mirrored_text)
 
         print(self.get_farewell())
 
