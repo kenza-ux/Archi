@@ -24,14 +24,20 @@ class MirrorApp:
         input_prompt = self.get_input_prompt("entrer")
 
         while True:
-            user_input = IOHandler.get_input(input_prompt)  # Utilisez IOHandler pour obtenir l'entrée
-            if user_input == 'exit':
-                break
+            try:
+                user_input = IOHandler.get_input(input_prompt)
+                if user_input.lower() == 'exit':
+                    break
 
-            if TextUtilities.is_palindrome(user_input):
-                IOHandler.display_message(self.get_input_prompt("reponse"))
-            else:
-                mirrored_text = TextUtilities.mirror_text(user_input)
-                IOHandler.display_message(f"{self.get_input_prompt('m')} {mirrored_text}")
+                if TextUtilities.is_palindrome(user_input):
+                    IOHandler.display_message(self.get_input_prompt("reponse"))
+                else:
+                    mirrored_text = TextUtilities.mirror_text(user_input)
+                    IOHandler.display_message(f"{self.get_input_prompt('m')} {mirrored_text}")
+
+            except Exception as e:
+                error_message = f"Une erreur s'est produite: {str(e)}"
+                IOHandler.display_message(error_message)
+                continue
 
         IOHandler.display_message(self.get_farewell())
