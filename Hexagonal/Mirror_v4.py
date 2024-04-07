@@ -22,7 +22,6 @@ class MirrorApp:
     def run(self):
         IOHandler.display_message(self.get_greeting())
         input_prompt = self.get_input_prompt("entrer")
-
         while True:
             try:
                 user_input = IOHandler.get_input(input_prompt)
@@ -36,7 +35,7 @@ class MirrorApp:
                     IOHandler.display_message(f"{self.get_input_prompt('m')} {mirrored_text}")
 
             except Exception as e:
-                error_message = f"Une erreur s'est produite: {str(e)}"
+                error_message = self.dictionary.get_error_message(self.lang, "general_error")
                 IOHandler.display_message(error_message)
                 continue
 

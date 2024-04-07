@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     if interface_choice == "gui":
         app = GUIApp()
-        app.mainloop()f
+        app.mainloop()
     else:
         lang_choice = input("Choose a language (fr for French, en for English): ").lower()
         if lang_choice not in ["fr", "en"]:
