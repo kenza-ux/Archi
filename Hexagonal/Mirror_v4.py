@@ -24,14 +24,18 @@ class MirrorApp:
         input_prompt = self.get_input_prompt("entrer")
 
         while True:
-            user_input = input(input_prompt).lower()
-            if user_input == 'exit':
-                break
+            try:
+                user_input = input(input_prompt).lower()
+                if user_input == 'exit':
+                    break
 
-            if TextUtilities.is_palindrome(user_input):
-                print(self.get_input_prompt("reponse"))
-            else:
-                mirrored_text = TextUtilities.mirror_text(user_input)
-                print(self.get_input_prompt("m"), mirrored_text)
+                if TextUtilities.is_palindrome(user_input):
+                    print(self.get_input_prompt("reponse"))
+                else:
+                    mirrored_text = TextUtilities.mirror_text(user_input)
+                    print(self.get_input_prompt("m"), mirrored_text)
+
+            except TypeError as e:
+                print(f"Erreur : Veuillez entrer une chaîne de caractères.")
 
         print(self.get_farewell())
