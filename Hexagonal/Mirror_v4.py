@@ -1,4 +1,4 @@
-from  IOHandler import IOHandler
+from  Hexagonal.IOHandler import IOHandler
 from Hexagonal.TextUtilities import TextUtilities
 
 class MirrorApp:

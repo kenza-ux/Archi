@@ -42,11 +42,22 @@ INPUTS_RUN = {
         "reponse": "Well said!"
     }
 }
+
+ERRORS = {
+    "fr": {
+        "type_error": "Veuillez entrer une chaîne de caractères."
+    },
+    "en": {
+        "type_error": "Please enter a string."
+    }
+}
+
 class Dictionnaire:
     def __init__(self):
         self._greetings = GREETINGS
         self._farewells = FAREWELLS
         self._inputs_run = INPUTS_RUN
+        self._errors = ERRORS
 
     def get_greeting(self, lang, period):
         return self._greetings.get(lang, {}).get(period, "Language or period not supported")
@@ -58,14 +69,4 @@ class Dictionnaire:
         return self._inputs_run.get(lang, {}).get(key, "Language or period not supported")
 
     def get_error_message(self, lang, error_key):
-            errors = {
-                "fr": {
-                    "type_error": "Erreur de type.",
-                    "general_error": "Une erreur s'est produite.",
-                },
-                "en": {
-                    "type_error": "Type error.",
-                    "general_error": "An error occurred.",
-                }
-            }
-            return errors.get(lang, {}).get(error_key, errors[lang]["general_error"])
+        return self.errors.get(lang, {}).get(error_key, "" )
