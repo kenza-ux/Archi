@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
-from TextUtilities import TextUtilities
+from Hexagonal.TextUtilities import TextUtilities
 
 
 class GUIApp(tk.Tk):
