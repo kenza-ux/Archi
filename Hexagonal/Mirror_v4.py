@@ -1,6 +1,5 @@
-
+from InputHandler import InputHandler
 from TextUtilities import TextUtilities
-
 class MirrorApp:
     def __init__(self, dictionary, time, lang="fr"):
         self.lang = lang.lower()
@@ -25,7 +24,7 @@ class MirrorApp:
 
         while True:
             try:
-                user_input = input(input_prompt).lower()
+                user_input = InputHandler.get_input(input_prompt)  # Use static method
                 if user_input == 'exit':
                     break
 
