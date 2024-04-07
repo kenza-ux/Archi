@@ -1,4 +1,5 @@
-from TextUtilities import TextUtilities
+from  IOHandler import IOHandler
+from Hexagonal.TextUtilities import TextUtilities
 
 class MirrorApp:
     def __init__(self, dictionary, time, lang="fr"):
@@ -19,18 +20,18 @@ class MirrorApp:
         return self.dictionary.get_input_message(self.lang, key)
 
     def run(self):
-        print(self.get_greeting())
+        IOHandler.display_message(self.get_greeting())
         input_prompt = self.get_input_prompt("entrer")
 
         while True:
-            user_input = input(input_prompt).lower()
+            user_input = IOHandler.get_input(input_prompt)  # Utilisez IOHandler pour obtenir l'entrée
             if user_input == 'exit':
                 break
 
             if TextUtilities.is_palindrome(user_input):
-                print(self.get_input_prompt("reponse"))
+                IOHandler.display_message(self.get_input_prompt("reponse"))
             else:
                 mirrored_text = TextUtilities.mirror_text(user_input)
-                print(self.get_input_prompt("m"), mirrored_text)
+                IOHandler.display_message(f"{self.get_input_prompt('m')} {mirrored_text}")
 
-        print(self.get_farewell())
+        IOHandler.display_message(self.get_farewell())
