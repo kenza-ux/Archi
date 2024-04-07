@@ -1,25 +1,17 @@
-import datetime
-from Dictio import Dictionnaire
 
+from Dictio import Dictionnaire
+from TimeDay import TimeOfDay
 class MirrorApp:
     def __init__(self, lang="fr"):
         self.lang = lang.lower()
-        self.current_hour = datetime.datetime.now().hour
+        self.current_hour = TimeOfDay.get_current_hour()
         self.dictionary = Dictionnaire()
+        self.time = TimeOfDay()
 
     def get_greeting(self):
-        period = self._get_time_of_day()
+        period = self.time.get_time_of_day(self.current_hour)
         return self.dictionary.get_greeting(self.lang, period)
 
-    def _get_time_of_day(self):
-        if 5 <= self.current_hour < 12:
-            return "morning"
-        elif 12 <= self.current_hour < 18:
-            return "afternoon"
-        elif 18 <= self.current_hour < 22:
-            return "evening"
-        else:
-            return "night"
 
     def mirror_text(self, text):
         return text[::-1]
@@ -29,7 +21,7 @@ class MirrorApp:
         return cleaned_text == cleaned_text[::-1]
 
     def get_farewell(self):
-        period = self._get_time_of_day()
+        period = self.time.get_time_of_day(self.current_hour)
         return self.dictionary.get_farewell(self.lang, period)
 
     def get_input_prompt(self, key):
