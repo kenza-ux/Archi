@@ -1,4 +1,5 @@
 class TextUtilities:
+
     @staticmethod
     def mirror_text(text):
         if not isinstance(text, str):
@@ -11,3 +12,4 @@ class TextUtilities:
             raise TypeError("Le texte doit être une chaîne de caractères.")
         cleaned_text = text.lower().replace(" ", "")
         return cleaned_text == cleaned_text[::-1]
+

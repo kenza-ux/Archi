@@ -1,5 +1,6 @@
 from InputHandler import InputHandler
 from TextUtilities import TextUtilities
+
 class MirrorApp:
     def __init__(self, dictionary, time, lang="fr"):
         self.lang = lang.lower()
@@ -19,7 +20,7 @@ class MirrorApp:
         return self.dictionary.get_input_message(self.lang, key)
 
     def run(self):
-        print(self.get_greeting())
+        self.dictionary.display_message(self.get_greeting())
         input_prompt = self.get_input_prompt("entrer")
 
         while True:
@@ -29,12 +30,13 @@ class MirrorApp:
                     break
 
                 if TextUtilities.is_palindrome(user_input):
-                    print(self.get_input_prompt("reponse"))
+                    self.dictionary.display_message(self.get_input_prompt("reponse"))
                 else:
                     mirrored_text = TextUtilities.mirror_text(user_input)
-                    print(self.get_input_prompt("m"), mirrored_text)
+                    self.dictionary.display_message(self.get_input_prompt("m"), mirrored_text)
 
             except TypeError as e:
-                print(f"Erreur : Veuillez entrer une chaîne de caractères.")
+                error_message = self.dictionary.get_error_message(self.lang, "type_error")
+                self.dictionary.display_message(error_message)
 
-        print(self.get_farewell())
+        self.dictionary.display_message(self.get_farewell())
