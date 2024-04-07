@@ -34,12 +34,16 @@ INPUTS_RUN = {
     "fr": {
         "entrer": "Entrez du texte (ou 'exit' pour quitter): ",
         "m": "En mirroir",
-        "reponse": "Bien dit !"
+        "reponse": "Bien dit !",
+        "essai": "essayer encore une fois",
+        "v" : "vérifier"
      },
     "en": {
         "entrer": "Type here (or 'exit' to quit): ",
         "m": "Mirrored",
-        "reponse": "Well said!"
+        "reponse": "Well said!",
+        "essai": "Try Again",
+        "v" : "Check"
     }
 }
 
@@ -57,7 +61,7 @@ class Dictionnaire:
         self._greetings = GREETINGS
         self._farewells = FAREWELLS
         self._inputs_run = INPUTS_RUN
-        self.error_messages= ERROR_MSG
+        self._error_messages= ERROR_MSG
 
     def get_greeting(self, lang, period):
         return self._greetings.get(lang, {}).get(period, "Language or period not supported")
