@@ -5,6 +5,9 @@ from interface import GUIApp  # Assurez-vous que GUIApp est correctement import√
 
 if __name__ == "__main__":
     interface_choice = input("Choose interface type (console/gui): ").lower()
+    if interface_choice not in ["gui", "console"]:
+        print("Invalid  choice. Defaulting to console.")
+        lang_choice = "console"
 
     if interface_choice == "gui":
         app = GUIApp()
