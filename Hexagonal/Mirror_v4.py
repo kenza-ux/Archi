@@ -33,7 +33,7 @@ class MirrorApp:
                     self.dictionary.display_message(self.get_input_prompt("reponse"))
                 else:
                     mirrored_text = TextUtilities.mirror_text(user_input)
-                    self.dictionary.display_message(self.get_input_prompt("m"), mirrored_text)
+                    self.dictionary.display_message(self.get_input_prompt("m")+" : "+ mirrored_text)
 
             except TypeError as e:
                 error_message = self.dictionary.get_error_message(self.lang, "type_error")

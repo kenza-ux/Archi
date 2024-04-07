@@ -3,5 +3,5 @@ class InputHandler:
         self.prompt = prompt
 
     @staticmethod
-    def get_input(self):
-        return input(self.prompt).lower()
+    def get_input(prompt):
+        return input(prompt).lower()

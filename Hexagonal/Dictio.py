@@ -71,5 +71,5 @@ class Dictionnaire:
     def get_error_message(self, lang, key):
         return self.error_messages.get(self.lang, {}).get(key, "")
 
-    def display_message(message):
+    def display_message(self, message):  # Update to accept a message argument
         print(message)
