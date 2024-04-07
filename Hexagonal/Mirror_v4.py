@@ -1,4 +1,3 @@
-
 from TextUtilities import TextUtilities
 
 class MirrorApp:
