@@ -57,3 +57,15 @@ class Dictionnaire:
     def get_input_message(self, lang, key):
         return self._inputs_run.get(lang, {}).get(key, "Language or period not supported")
 
+    def get_error_message(self, lang, error_key):
+            errors = {
+                "fr": {
+                    "type_error": "Erreur de type.",
+                    "general_error": "Une erreur s'est produite.",
+                },
+                "en": {
+                    "type_error": "Type error.",
+                    "general_error": "An error occurred.",
+                }
+            }
+            return errors.get(lang, {}).get(error_key, errors[lang]["general_error"])
