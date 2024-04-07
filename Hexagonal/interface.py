@@ -74,7 +74,3 @@ class GUIApp(tk.Tk):
         for widget in self.winfo_children():
             widget.destroy()
 
-
-if __name__ == "__main__":
-    app = GUIApp()
-    app.mainloop()
