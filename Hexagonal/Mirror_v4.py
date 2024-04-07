@@ -1,13 +1,12 @@
-from Dictio import Dictionnaire
-from TimeDay import TimeOfDay
+
 from TextUtilities import TextUtilities
 
 class MirrorApp:
-    def __init__(self, lang="fr"):
+    def __init__(self, dictionary, time, lang="fr"):
         self.lang = lang.lower()
-        self.current_hour = TimeOfDay.get_current_hour()
-        self.dictionary = Dictionnaire()
-        self.time = TimeOfDay()
+        self.current_hour = time.get_current_hour()
+        self.dictionary = dictionary
+        self.time = time
 
     def get_greeting(self):
         period = self.time.get_time_of_day(self.current_hour)
