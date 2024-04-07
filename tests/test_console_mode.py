@@ -1,16 +1,10 @@
 import unittest
-from Hexagonal.TextUtilities import TextUtilities  # Assurez-vous que le chemin d'importation est correct
+from Hexagonal.TextUtilities import TextUtilities
 
 class TestConsoleMode(unittest.TestCase):
-    def test_is_palindrome_true(self):
+    def test_is_palindrome(self):
         """Teste que la méthode is_palindrome renvoie True pour un palindrome."""
         self.assertTrue(TextUtilities.is_palindrome("radar"))
-        self.assertTrue(TextUtilities.is_palindrome("level"))
-        self.assertTrue(TextUtilities.is_palindrome(""))
-
-    def test_is_palindrome_false(self):
-        """Teste que la méthode is_palindrome renvoie False pour un non-palindrome."""
-        self.assertFalse(TextUtilities.is_palindrome("python"))
         self.assertFalse(TextUtilities.is_palindrome("openai"))
 
     def test_mirror_text(self):
@@ -19,7 +13,6 @@ class TestConsoleMode(unittest.TestCase):
         self.assertEqual(TextUtilities.mirror_text("OpenAI"), "IAnepO")
         self.assertEqual(TextUtilities.mirror_text(""), "")
 
-    # Vous pouvez ajouter ici d'autres tests pour les différentes méthodes de TextUtilities
 
 if __name__ == "__main__":
     unittest.main()

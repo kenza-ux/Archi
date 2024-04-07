@@ -23,7 +23,7 @@ class TestGUIApp(unittest.TestCase):
 
     def test_palindrome_check_true(self):
         """Teste la vérification de palindrome pour un cas où le texte est un palindrome."""
-        self.app.lang_var.set("en")  # Assurez-vous que le test se déroule en anglais
+        self.app.lang_var.set("en")
         self.app.confirm_language()  # Mise à jour des widgets pour refléter le choix de la langue
         self.app.text_entry.insert(0, "radar")
         self.app.check_palindrome()
@@ -37,7 +37,6 @@ class TestGUIApp(unittest.TestCase):
         self.app.check_palindrome()
         self.assertEqual(self.app.result_label['text'], "'python' n'est pas un palindrome.")
 
-    # Ici, vous pouvez ajouter d'autres tests pour couvrir plus de fonctionnalités et de cas.
 
 if __name__ == "__main__":
     unittest.main()
