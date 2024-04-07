@@ -32,9 +32,12 @@ class MirrorApp:
         period = self._get_time_of_day()
         return self.dictionary.get_farewell(self.lang, period)
 
+    def get_input_prompt(self, key):
+        return self.dictionary.get_input_message(self.lang, key)
+
     def run(self):
         print(self.get_greeting())
-        input_prompt = self.dictionary.get_input_message(self.lang, "entrer")
+        input_prompt = self.get_input_prompt("entrer")
 
         while True:
             user_input = input(input_prompt).lower()
@@ -42,10 +45,10 @@ class MirrorApp:
                 break
 
             if self.is_palindrome(user_input):
-                print(self.dictionary.get_input_message(self.lang, "reponse"))
+                print(self.get_input_prompt("reponse"))
             else:
                 mirrored_text = self.mirror_text(user_input)
-                print(self.dictionary.get_input_message(self.lang, "m"), mirrored_text)
+                print(self.get_input_prompt("m"), mirrored_text)
 
         print(self.get_farewell())
 
