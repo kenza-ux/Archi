@@ -40,3 +40,14 @@ inputs_run = {
                 "reponse": "Well said!"
             }
 }
+
+errors = {
+    "fr": {
+        "type_error": "Erreur de type.",
+        "general_error": "Une erreur s'est produite.",
+    },
+    "en": {
+        "type_error": "Type error.",
+        "general_error": "An error occurred.",
+    }
+}
