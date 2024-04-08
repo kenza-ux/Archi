@@ -1,6 +1,6 @@
 
-from Dictio import Dictionnaire
-from TimeDay import TimeOfDay
+from Hexagonal.appli.Dictio import Dictionnaire
+from Hexagonal.appli.TimeDay import TimeOfDay
 class MirrorApp:
     def __init__(self, lang="fr"):
         self.lang = lang.lower()

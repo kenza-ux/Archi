@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox, ttk
-from Mirror_v4 import MirrorApp
-from Dictio import Dictionnaire
-from TimeDay import TimeOfDay
-from TextUtilities import TextUtilities
+from Hexagonal.appli.Mirror_v4 import MirrorApp
+from Hexagonal.appli.Dictio import Dictionnaire
+from Hexagonal.appli.TimeDay import TimeOfDay
+from Hexagonal.appli.TextUtilities import TextUtilities
 
 class GUIApp(tk.Tk):
     def __init__(self):

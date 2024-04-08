@@ -1,5 +1,5 @@
-from InputHandler import InputHandler
-from TextUtilities import TextUtilities
+from Hexagonal.appli.InputHandler import InputHandler
+from Hexagonal.appli.TextUtilities import TextUtilities
 
 class MirrorApp:
     def __init__(self, dictionary, time, lang="fr"):
