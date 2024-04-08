@@ -1,7 +1,7 @@
 import unittest
 
 import sys
-sys.path.append('/Hexagonal')
+sys.path.append('/Users/kenzamerzouk/PycharmProjects/Archi_grp_E/Hexagonal/appli')
 from unittest.mock import call, patch
 
 from Hexagonal.appli.Mirror_v4 import MirrorApp
@@ -11,7 +11,7 @@ from Hexagonal.appli.TimeDay import TimeOfDay
 class TestConsoleMode(unittest.TestCase):
     @patch('InputHandler.get_input')
     @patch('TextUtilities.is_palindrome')
-    def test_run_palindrome(self, mock_is_palindrome, mock_get_input):  # Remove mock_mirror_text
+    def test_run_palindrome(self, mock_is_palindrome, mock_get_input):
         mock_is_palindrome.return_value = True
         mock_get_input.return_value = "kayak"
 
